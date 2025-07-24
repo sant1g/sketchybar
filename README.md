@@ -1,6 +1,6 @@
 # Sketchybar Dots
 
-![Bar Preview](/doc/screenshot.jpeg"Bar Preview")
+![Bar Preview](/doc/screenshot.jpeg "Bar Preview")
 
 ## Requirements:
 - [SwitchAudioSource](https://github.com/deweller/switchaudio-osx) for audio source identification
