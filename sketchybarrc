@@ -68,6 +68,7 @@ sketchybar  --add item   spacer3  right                          \
                                   width=15 \
                                   label.color=$BG
 
+sketchybar  --add event encoder_mode
 sketchybar  --add item  encoders  right \
             --set       encoders  label="VOL >" \
                                   label.color=$FG \
@@ -79,7 +80,10 @@ sketchybar  --add item  encoders  right \
                                   icon.font="Ndot:55:12.0" \
                                   icon.width=43 \
                                   icon.align=left \
-                                  width=30
+                                  width=30 \
+                                  script='./scripts/encoders.sh' \
+            --subscribe encoders  encoder_mode
+
 
 sketchybar  --add item  time  right     \
             --set       time  label="$(date '+%H : %M')" \
