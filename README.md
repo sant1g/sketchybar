@@ -1,6 +1,12 @@
 # Sketchybar Dots
 
-![Bar Preview](/doc/screenshot.jpeg "Bar Preview")
+### Inspired by NOTHING
+
+![Bar Preview](./doc/screenshot.png "Bar Preview")
+
+## Fonts:
+- [Iosevka Nerd Font](https://www.nerdfonts.com/font-downloads)
+- [Ndot](./resources/fonts/Ndot-55.otf)
 
 ## Requirements:
 - [SwitchAudioSource](https://github.com/deweller/switchaudio-osx) for audio source identification

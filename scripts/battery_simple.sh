@@ -12,9 +12,9 @@ else
     LABEL="${PERCENTAGE}%"
   else
     if [ "$CHARGING" = "" ]; then
-      LABEL="􁍗"
+      LABEL="󰤅"
     else
-      LABEL="${PERCENTAGE}%􀋦"
+      LABEL="${PERCENTAGE}%󱐋"
     fi
   fi
 

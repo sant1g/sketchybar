@@ -15,9 +15,9 @@ sketchybar --bar  height=110          \
 		              corner_radius=10    \
                   shadow=true
 
-sketchybar --default updates=when_shown                           \
+sketchybar --default updates=when_shown        \
                      icon.font="Ndot:55:18.0"  \
-                     icon.color=$ACCENT                           \
+                     icon.color=$ACCENT        \
                      label.font="Ndot:55:18.0" \
                      label.color=$FG
 
@@ -26,16 +26,16 @@ sketchybar  --add item   spacer0  left            \
                                   width=16        \
                                   label.color=$BG
 
-sketchybar  --add item  title   left                                          \
-            --set       title   icon="•"                                      \
-                                icon.color=$ACCENT                            \
-                                icon.padding_right=5                          \
+sketchybar  --add item  title   left                     \
+            --set       title   icon="•"                 \
+                                icon.color=$ACCENT       \
+                                icon.padding_right=5     \
                                 icon.font="Ndot:57:32.0" \
                                 label=SANT1G
 
-sketchybar  --add item   spacer1  left                          \
-            --set        spacer1  label='###'                       \
-                                  width=24 \
+sketchybar  --add item   spacer1  left            \
+            --set        spacer1  label='###'     \
+                                  width=24        \
                                   label.color=$BG
 
 # spaces
@@ -47,253 +47,254 @@ do
   SPACES+=(space."$sid")
   sketchybar --add space  space.$sid  left                                          \
              --set        space.$sid  associated_space=$sid                         \
-                                      width=28 \
+                                      width=28                                      \
                                       icon=" "                                      \
                                       icon.highlight_color=$FG                      \
+                                      icon.font="Iosevka:Regular:18.0"              \
                                       icon.color=$GRAY                              \
-                                      y_offset=10                                    \
+                                      y_offset=10                                   \
                                       click_script="yabai -m space --focus $sid"
 done
 
 sketchybar --add item   sps   left                          \
-           --set        sps   label=                       \
+           --set        sps   label=                        \
 			                        label.color=$BG               \
-                              width=15 \
+                              width=15                      \
                               script='./scripts/spaces.sh'  \
                               update_freq=60                \
            --subscribe  sps   space_windows_change
 
-sketchybar  --add item   spacer3  right                          \
-            --set        spacer3  label='###'                       \
-                                  width=15 \
+sketchybar  --add item   spacer3  right           \
+            --set        spacer3  label='###'     \
+                                  width=15        \
                                   label.color=$BG
 
 sketchybar  --add event encoder_mode
-sketchybar  --add item  encoders  right \
-            --set       encoders  label="VOL >" \
-                                  label.color=$FG \
-                                  label.font="Ndot:55:12.0" \
-                                  label.width=43 \
-                                  label.align=right \
-                                  icon="< MOV" \
-                                  icon.color=$FG \
-                                  icon.font="Ndot:55:12.0" \
-                                  icon.width=43 \
-                                  icon.align=left \
-                                  width=30 \
-                                  script='./scripts/encoders.sh' \
+sketchybar  --add item  encoders  right                                       \
+            --set       encoders  label="VOLUME "                            \
+                                  label.color=$GRAY                           \
+                                  label.font="Iosevka Nerd Font:Regular:11.0" \
+                                  label.width=45                              \
+                                  label.align=right                           \
+                                  icon=" MOVE"                               \
+                                  icon.color=$GRAY                            \
+                                  icon.font="Iosevka Nerd Font:Regular:11.0"  \
+                                  icon.width=45                               \
+                                  icon.align=left                             \
+                                  width=30                                    \
+                                  script='./scripts/encoders.sh'              \
             --subscribe encoders  encoder_mode
 
 
-sketchybar  --add item  time  right     \
-            --set       time  label="$(date '+%H : %M')" \
-                              label.color=$FG \
-                              label.align=center \
-                              label.width=80 \
-                              script='./scripts/time.sh'  \
-                              background.image='./resources/bg_small_white.png' \
-                              background.image.drawing=on \
-                              background.drawing=off \
-                              background.image.corner_radius=15 \
-                              update_freq=60     \
-                              width=20
+sketchybar  --add item  time  right                                             \
+            --set       time  label="$(date '+%H : %M')"                        \
+                              label.color=$FG                                   \
+                              label.align=center                                \
+                              label.width=80                                    \
+                              script='./scripts/time.sh'                        \
+                              background.image='./resources/bg_small_dark.png'  \
+                              background.image.drawing=on                       \
+                              background.drawing=on                             \
+                              background.image.corner_radius=15                 \
+                              update_freq=10                                    \
+                              width=25
 
-sketchybar  --add item  date  right     \
-            --set       date  label="$(date '+%d %b')" \
-                              script='./scripts/date.sh'  \
-                              label.color=$FG \
-                              label.align=center \
-                              label.width=80 \
-                              background.image='./resources/bg_small_white.png' \
-                              background.image.drawing=on \
-                              background.drawing=off \
-                              background.image.corner_radius=15 \
-                              update_freq=60      \
-                              width=40
+sketchybar  --add item  date  right                                             \
+            --set       date  label="$(date '+%-d/%-m')"                        \
+                              script='./scripts/date.sh'                        \
+                              label.color=$FG                                   \
+                              label.align=center                                \
+                              label.width=80                                    \
+                              background.image='./resources/bg_small_dark.png'  \
+                              background.image.drawing=on                       \
+                              background.drawing=on                             \
+                              background.image.corner_radius=15                 \
+                              update_freq=60                                    \
+                              width=50
 
-sketchybar  --add item  volume_label  right \
-            --set       volume_label  label='output_device' \
-                                      label.font="Space Grotesk:Regular:12.0" \
-                                      label.color=$GRAY \
-                                      script='./scripts/audio.sh' \
-                                      update_freq=5 \
-                                      width=18
+sketchybar  --add item  volume_label  right                             \
+            --set       volume_label  label='output_device'             \
+                                      label.font="Iosevka:Regular:13.0" \
+                                      label.color=$GRAY                 \
+                                      script='./scripts/audio.sh'       \
+                                      update_freq=5                     \
+                                      width=22
 
 # Set minimum percentage to 20 to avoid corner radious breaking
-sketchybar --add slider volume_slider right 80 \
-           --set        volume_slider slider.background.color=$FG \
-                                      slider.highlight_color=$ACCENT \
-                                      slider.background.drawing=on \
-                                      slider.background.height=15 \
-                                      background.height=15 \
-                                      background.drawing=on \
-                                      slider.background.corner_radius=10 \
-                                      slider.percentage=0 \
+sketchybar --add slider volume_slider right 80                            \
+           --set        volume_slider slider.background.color=$FG         \
+                                      slider.highlight_color=$ACCENT      \
+                                      slider.background.drawing=on        \
+                                      slider.background.height=15         \
+                                      background.height=15                \
+                                      background.drawing=on               \
+                                      slider.background.corner_radius=10  \
+                                      slider.percentage=0                 \
                                       script='./scripts/volume_slider.sh' \
                                       width=25
 
 sketchybar  --subscribe volume_slider volume_change
 
-sketchybar  --add item   spacer2  right                          \
-            --set        spacer2  label='###'                       \
-                                  width=20 \
+sketchybar  --add item   spacer2  right           \
+            --set        spacer2  label='###'     \
+                                  width=20        \
                                   label.color=$BG
 
-sketchybar  --add item  weather right \
-            --set       weather label= \
-                                width=26 \
-                                label.align=center \
-                                label.font="Ndot:55:24.0"  \
-                                label.color=$FG \
-                                script='./scripts/weather.sh'  \
+sketchybar  --add item  weather right                         \
+            --set       weather label=                        \
+                                width=26                      \
+                                label.align=center            \
+                                label.font="Ndot:55:24.0"     \
+                                label.color=$FG               \
+                                script='./scripts/weather.sh' \
                                 update_freq=60
 
-sketchybar  --add item  weather_icon  right \
-            --set       weather_icon  label.drawing=off \
-                                      width=16  \
+sketchybar  --add item  weather_icon  right                                                                                       \
+            --set       weather_icon  label.drawing=off                                                                           \
+                                      width=16                                                                                    \
                                       background.image='/Users/sant1g/.config/sketchybar/resources/weather_icons/clear_night.png' \
-                                      background.image.drawing=on \
-                                      background.drawing=on \
-                                      background.image.padding_left=3 \
+                                      background.image.drawing=on                                                                 \
+                                      background.drawing=on                                                                       \
+                                      background.image.padding_left=3                                                             \
                                       background.image.scale=0.7
 
-sketchybar  --add item   spacer4  right                          \
-            --set        spacer4  label='.'                       \
-                                  width=55 \
+sketchybar  --add item   spacer4  right           \
+            --set        spacer4  label='.'       \
+                                  width=55        \
                                   label.color=$BG
 
-sketchybar  --add item  battery   right \
-            --set       battery   icon="BAT" \
-                                  icon.font="Ndot:55:22.0"  \
-                                  icon.color=$FG \
-                                  icon.width=40 \
-                                  icon.align=right \
-                                  icon.padding_right=5 \
-                                  width=24  \
-                                  label="--%" \
-                                  label.font="Space Grotesk:Regular:11.0"  \
-                                  label.color=$GRAY \
-                                  label.y_offset=-3 \
-                                  label.width=20 \
-                                  label.align=left \
-                                  script='./scripts/battery_simple.sh' \
+sketchybar  --add item  battery   right                                 \
+            --set       battery   icon="BAT"                            \
+                                  icon.font="Ndot:55:22.0"              \
+                                  icon.color=$FG                        \
+                                  icon.width=40                         \
+                                  icon.align=right                      \
+                                  icon.padding_right=5                  \
+                                  width=24                              \
+                                  label="--%"                           \
+                                  label.font="Iosevka:Regular:13.0"     \
+                                  label.color=$GRAY                     \
+                                  label.y_offset=-3                     \
+                                  label.width=20                        \
+                                  label.align=left                      \
+                                  script='./scripts/battery_simple.sh'  \
                                   update_freq=3
 
-sketchybar  --add item   spacer13   right                          \
-            --set        spacer13   label='###'                       \
-                                    width=12 \
+sketchybar  --add item   spacer13   right             \
+            --set        spacer13   label='###'       \
+                                    width=12          \
                                     label.color=$BG
 
-sketchybar  --add item  ram   right \
-            --set       ram   icon="RAM" \
-                              icon.font="Ndot:55:22.0"  \
-                              icon.color=$FG \
-                              icon.width=40 \
-                              icon.align=right \
-                              icon.padding_right=5 \
-                              width=23  \
-                              label="--%" \
-                              label.font="Space Grotesk:Regular:11.0"  \
-                              label.color=$GRAY \
-                              label.y_offset=-3 \
-                              label.width=20 \
+sketchybar  --add item  ram   right                             \
+            --set       ram   icon="RAM"                        \
+                              icon.font="Ndot:55:22.0"          \
+                              icon.color=$FG                    \
+                              icon.width=40                     \
+                              icon.align=right                  \
+                              icon.padding_right=5              \
+                              width=23                          \
+                              label="--%"                       \
+                              label.font="Iosevka:Regular:13.0" \
+                              label.color=$GRAY                 \
+                              label.y_offset=-3                 \
+                              label.width=20                    \
                               label.align=left
 
-sketchybar  --add item   spacer15   right                          \
-            --set        spacer15   label='###'                       \
-                                    width=12 \
+sketchybar  --add item   spacer15   right           \
+            --set        spacer15   label='###'     \
+                                    width=12        \
                                     label.color=$BG
 
-sketchybar  --add item  cpu   right \
-            --set       cpu   icon="CPU" \
-                              icon.font="Ndot:55:22.0"  \
-                              icon.color=$FG \
-                              icon.width=40 \
-                              icon.align=right \
-                              icon.padding_right=5 \
-                              width=24  \
-                              label="--%" \
-                              label.font="Space Grotesk:Regular:11.0"  \
-                              label.color=$GRAY \
-                              label.y_offset=-3 \
-                              label.width=20 \
+sketchybar  --add item  cpu   right                                       \
+            --set       cpu   icon="CPU"                                  \
+                              icon.font="Ndot:55:22.0"                    \
+                              icon.color=$FG                              \
+                              icon.width=40                               \
+                              icon.align=right                            \
+                              icon.padding_right=5                        \
+                              width=24                                    \
+                              label="--%"                                 \
+                              label.font="Iosevka Nerd Font:Regular:13.0" \
+                              label.color=$GRAY                           \
+                              label.y_offset=-3                           \
+                              label.width=20                              \
                               label.align=left
 
-sketchybar  --add item   spacer14   right                          \
-            --set        spacer14   label='###'                       \
-                                    width=20 \
+sketchybar  --add item   spacer14   right           \
+            --set        spacer14   label='###'     \
+                                    width=20        \
                                     label.color=$BG
 
-sketchybar  --add item  docker    right \
-            --set       docker    icon="" \
-                                  icon.font="Iosevka Nerd Font:Regular:18.0"  \
-                                  icon.color=$BG \
-                                  icon.padding_left=15 \
-                                  icon.y_offset=1 \
-                                  icon.width=50 \
-                                  label='OFF' \
-                                  label.font="Ndot:55:14.0"  \
-                                  label.color=$BG \
-                                  label.align=right \
-                                  label.width=16 \
-                                  label.y_offset=2 \
+sketchybar  --add item  docker    right                                             \
+            --set       docker    icon=""                                          \
+                                  icon.font="Iosevka Nerd Font:Regular:18.0"        \
+                                  icon.color=$BG                                    \
+                                  icon.padding_left=15                              \
+                                  icon.y_offset=1                                   \
+                                  icon.width=50                                     \
+                                  label='OFF'                                       \
+                                  label.font="Iosevka:Regular:14.0"                 \
+                                  label.color=$BG                                   \
+                                  label.align=right                                 \
+                                  label.width=16                                    \
+                                  label.y_offset=1                                  \
                                   background.image='./resources/bg_small_white.png' \
-                                  background.image.drawing=on \
-                                  background.image.corner_radius=17 \
-                                  background.drawing=on \
-                                  width=45 \
-                                  script='./scripts/docker.sh' \
-                                  click_script='./scripts/switch_docker.sh' \
+                                  background.image.drawing=on                       \
+                                  background.image.corner_radius=17                 \
+                                  background.drawing=on                             \
+                                  width=45                                          \
+                                  script='./scripts/docker.sh'                      \
+                                  click_script='./scripts/switch_docker.sh'         \
                                   update_freq=3
 
-sketchybar  --add item  vpn   right \
-            --set       vpn   icon="􀞚" \
-                              icon.font="Iosevka Nerd Font:Regular:18.0"  \
-                              icon.color=$BG \
-                              icon.padding_left=14 \
-                              icon.y_offset=1 \
-                              icon.width=50 \
-                              label='OFF' \
-                              label.font="Ndot:55:14.0"  \
-                              label.color=$BG \
-                              label.align=right \
-                              label.width=16 \
-                              label.y_offset=2 \
-                              label.padding_right=1 \
+sketchybar  --add item  vpn   right                                             \
+            --set       vpn   icon="􀞚"                                         \
+                              icon.font="Iosevka Nerd Font:Regular:18.0"        \
+                              icon.color=$BG                                    \
+                              icon.padding_left=14                              \
+                              icon.y_offset=1                                   \
+                              icon.width=50                                     \
+                              label='OFF'                                       \
+                              label.font="Iosevka:Regular:14.0"                 \
+                              label.color=$BG                                   \
+                              label.align=right                                 \
+                              label.width=16                                    \
+                              label.y_offset=1                                  \
+                              label.padding_right=1                             \
                               background.image='./resources/bg_small_white.png' \
-                              background.image.drawing=on \
-                              background.image.corner_radius=17 \
-                              background.drawing=on \
-                              width=45 \
-                              script='./scripts/vpn.sh' \
-                              click_script='./scripts/switch_vpn.sh' \
+                              background.image.drawing=on                       \
+                              background.image.corner_radius=17                 \
+                              background.drawing=on                             \
+                              width=45                                          \
+                              script='./scripts/vpn.sh'                         \
+                              click_script='./scripts/switch_vpn.sh'            \
                               update_freq=3
 
-sketchybar  --add item   spacer9  right                          \
-            --set        spacer9  label='###'                       \
-                                  width=20 \
+sketchybar  --add item   spacer9  right           \
+            --set        spacer9  label='###'     \
+                                  width=20        \
                                   label.color=$BG
 
-sketchybar  --add item  media_playback  right   \
-            --set       media_playback  label="" \
-                                        label.padding_right=5 \
-                                        label.y_offset=27 \
-                                        label.font="Iosevka Nerd Font:Regular:18.0"  \
-                                        icon.drawing=off \
-                                        background.image.drawing=on \
-                                        background.image.corner_radius=10 \
-                                        background.drawing=on \
-                                        width=80 \
-                                        script='./scripts/media_cover.sh' \
+sketchybar  --add item  media_playback  right                                       \
+            --set       media_playback  label=""                                   \
+                                        label.padding_right=5                       \
+                                        label.y_offset=27                           \
+                                        label.font="Iosevka Nerd Font:Regular:18.0" \
+                                        icon.drawing=off                            \
+                                        background.image.drawing=on                 \
+                                        background.image.corner_radius=10           \
+                                        background.drawing=on                       \
+                                        width=80                                    \
+                                        script='./scripts/media_cover.sh'           \
                                         update_freq=1
 
 # System Stats
 sketchybar  --add event  system_stats
-sketchybar  --add item   system   right                          \
-            --set        system   label='###'                       \
-                                  width=0 \
-                                  label.color=$BG \
-                                  script='./scripts/stats.sh'  \
+sketchybar  --add item   system   right                       \
+            --set        system   label='###'                 \
+                                  width=0                     \
+                                  label.color=$BG             \
+                                  script='./scripts/stats.sh' \
             --subscribe  system   system_stats
 
 killall stats_provider
